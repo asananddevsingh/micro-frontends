@@ -1,15 +1,19 @@
 import * as React from 'react';
-import { Outlet, Link } from 'react-router-dom';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { StylesProvider } from '@material-ui/core/styles';
+import { Pricing, Landing } from './components';
 
 export default function App() {
   return (
     <div>
-      <h1>Bookkeeper</h1>
-      {/* <nav style={{ borderBottom: 'solid 1px', paddingBottom: '1rem' }}>
-        <Link to="/invoices">Invoices</Link> |{' '}
-        <Link to="/expenses">Expenses</Link>
-      </nav>
-      <Outlet /> */}
+      <StylesProvider>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/pricing" component={Pricing} />
+            <Route path="/" component={Landing} />
+          </Switch>
+        </BrowserRouter>
+      </StylesProvider>
     </div>
   );
 }
