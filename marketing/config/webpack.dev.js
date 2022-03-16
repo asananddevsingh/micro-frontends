@@ -16,10 +16,10 @@ const devConfig = {
       template: './public/index.html',
     }),
     new ModuleFederationPlugin({
-      name: 'marketingApp',
+      name: 'marketing',
       filename: 'remoteEntry.js',
       exposes: {
-        './marketing': './src/bootstrap.js',
+        './marketingApp': './src/bootstrap.js',
       },
       // shared: {
       //   react: {
