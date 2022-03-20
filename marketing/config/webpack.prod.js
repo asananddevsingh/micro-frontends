@@ -6,13 +6,14 @@ const prodConfig = {
   mode: 'production',
   output: {
     filename: '[name].[contenthash].js',
+    publicPath: '/marketing/latest/',
   },
   plugins: [
     new ModuleFederationPlugin({
       name: 'marketingApp',
       filename: 'remoteEntry.js',
       exposes: {
-        './marketingApp': './src/bootstrap.js',
+        './marketingApp': './src/bootstrap',
       },
       // shared: {
       //   react: {
