@@ -1,5 +1,7 @@
 import { mount } from 'marketing/marketingApp';
 import { useRef, useEffect } from 'react';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { Header } from './components';
 
 const App = () => {
   const ref = useRef(null);
@@ -9,10 +11,12 @@ const App = () => {
   });
 
   return (
-    <div>
-      <h1>Hello Contianer!</h1>
-      <div ref={ref} />
-    </div>
+    <BrowserRouter>
+      <div>
+        <Header />
+        <div ref={ref} />
+      </div>
+    </BrowserRouter>
   );
 };
 
