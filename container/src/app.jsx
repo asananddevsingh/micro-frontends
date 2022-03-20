@@ -1,7 +1,15 @@
 import { mount } from 'marketing/marketingApp';
 import { useRef, useEffect } from 'react';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
+import {
+  StylesProvider,
+  createGenerateClassName,
+} from '@material-ui/core/styles';
 import { Header } from './components';
+
+const generateClassName = createGenerateClassName({
+  productionPrefix: 'co',
+});
 
 const App = () => {
   const ref = useRef(null);
@@ -12,10 +20,12 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <div>
-        <Header />
-        <div ref={ref} />
-      </div>
+      <StylesProvider generateClassName={generateClassName}>
+        <div>
+          <Header />
+          <div ref={ref} />
+        </div>
+      </StylesProvider>
     </BrowserRouter>
   );
 };
