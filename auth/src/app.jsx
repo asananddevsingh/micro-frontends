@@ -17,8 +17,12 @@ export default function App(props) {
         {/* Here Router is a memory router. */}
         <Router history={props.history}>
           <Switch>
-            <Route path="/auth/signin" component={Signin} />
-            <Route path="/auth/signup" component={Signup} />
+            <Route path="/auth/signin">
+              <Signin onSignIn={props.onSignIn} />
+            </Route>
+            <Route path="/auth/signup">
+              <Signup onSignIn={props.onSignIn} />
+            </Route>
           </Switch>
         </Router>
       </StylesProvider>
