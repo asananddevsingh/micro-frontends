@@ -14,6 +14,8 @@ const prodConfig = {
       name: 'container',
       remotes: {
         marketing: `marketing@${productionDomain}/marketing/latest/remoteEntry.js`,
+        auth: `auth@${productionDomain}/auth/latest/remoteEntry.js`,
+        dashboard: `dashboard@${productionDomain}/dashboard/latest/remoteEntry.js`,
       },
     }),
   ],
