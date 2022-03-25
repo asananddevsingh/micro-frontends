@@ -1,5 +1,6 @@
-import { lazy, Suspense, useState } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { lazy, Suspense, useState, useEffect } from 'react';
+import { Router, Switch, Route, Redirect } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import {
   StylesProvider,
   createGenerateClassName,
@@ -14,11 +15,19 @@ const generateClassName = createGenerateClassName({
   productionPrefix: 'co',
 });
 
+const history = createBrowserHistory();
+
 const App = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
 
+  useEffect(() => {
+    if (isSignedIn) {
+      history.push('/dashboard');
+    }
+  }, [isSignedIn]);
+
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <StylesProvider generateClassName={generateClassName}>
         <div>
           <Header
@@ -34,6 +43,7 @@ const App = () => {
                 />
               </Route>
               <Route path="/dashboard">
+                {!isSignedIn && <Redirect to="/" />}
                 <DashboardAppLazy />
               </Route>
               <Route path="/">
@@ -43,7 +53,7 @@ const App = () => {
           </Suspense>
         </div>
       </StylesProvider>
-    </BrowserRouter>
+    </Router>
   );
 };
 
